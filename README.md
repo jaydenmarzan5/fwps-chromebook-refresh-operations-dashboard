@@ -1,10 +1,12 @@
-# FWPS Refresh Dashboard V4 Mock
+# FWPS Refresh Dashboard V5 Mock
 
 Open `index.html` in your browser.
 
-Changes in this version:
-- School Detail area dropdown now updates the right-side statistics immediately.
-- Selecting an area defaults to area snapshot mode, not a specific school.
-- Area Progress Snapshot only shows when no school is selected.
-- Clicking a school switches to school-only stats, live updates, recent notes, and recent activity.
-- Deselect buttons bring the area snapshot back.
+Updates included:
+- Added school codes from the COW count spreadsheet.
+- School search now works by full school name or school code.
+- COW counts now use the gathered school COW count data.
+- Removed Area 5.
+- Area and school lists sort from most complete to least complete.
+- Mobile double-tap zoom issue reduced with touch-action and mobile viewport settings.
+- Notes now include both date and timestamp.

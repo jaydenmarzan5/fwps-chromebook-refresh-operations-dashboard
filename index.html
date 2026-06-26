@@ -1,1 +1,146 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>FWPS Refresh Dashboard V4 Mock</title><link rel="stylesheet" href="styles.css"/></head><body><aside class="sidebar"><div class="brand"><div class="brand-icon">FW</div><div><h2>FWPS Refresh</h2><p>Ops Dashboard</p></div></div><nav><button class="active" data-view="dashboard">Dashboard</button><button data-view="schools">School Detail</button><button data-view="update">Intern Update</button><button data-view="summary">End-of-Day</button></nav><div class="user-card"><strong>Jayden</strong><span>Technician</span></div></aside><main><header class="topbar"><div><p class="eyebrow">District Chromebook Refresh</p><h1 id="pageTitle">Dashboard</h1></div><select id="globalAreaFilter"></select></header><section id="dashboard" class="view active-view"><div class="metrics"><article><span>Schools</span><strong id="metricSchools">0</strong></article><article><span>Completed</span><strong id="metricCompleted">0</strong></article><article><span>Avg. Progress</span><strong id="metricProgress">0%</strong></article><article><span>COWs Done</span><strong id="metricCows">0</strong></article><article><span>Damaged</span><strong id="metricDamaged">0</strong></article></div><div class="grid"><section class="panel"><div class="panel-head"><div><h2>School Progress Overview</h2><p>Filter by area or search for a school.</p></div><input id="dashboardSearch" placeholder="Search schools..."/></div><div id="schoolRows" class="rows"></div></section><section class="panel"><h2>Staffing Insights</h2><div id="insights" class="insights"></div></section></div></section><section id="schools" class="view"><div class="detail-layout"><section class="panel list-panel"><div class="panel-head stacked"><div><h2>Schools</h2><p>Select an area, then optionally click a school.</p></div><select id="detailAreaFilter"></select><input id="detailSearch" placeholder="Search schools..."/><button id="clearSchoolBtn" class="ghost-button">Deselect school / View area snapshot</button></div><div id="detailSchoolList" class="school-list"></div></section><section class="school-detail panel"><div id="areaOnlyView"><h2 id="areaTitle"></h2><p id="areaMeta"></p><div class="detail-grid"><div><span>Schools in Area</span><strong id="areaSchoolsCount"></strong></div><div><span>Avg. Progress</span><strong id="areaAvgProgress"></strong></div><div><span>COWs Completed</span><strong id="areaCows"></strong></div><div><span>Damaged Devices</span><strong id="areaDamaged"></strong></div></div><h3>Area Progress Snapshot</h3><p class="muted">This view appears when no specific school is selected.</p><div id="areaSnapshot" class="snapshot"></div></div><div id="schoolOnlyView" class="hidden"><div class="school-detail-head"><div><h2 id="detailName"></h2><p id="detailMeta"></p></div><button id="deselectFromDetail" class="ghost-button">Back to area snapshot</button></div><div class="detail-grid"><div><span>Progress</span><strong id="detailProgress"></strong></div><div><span>COWs Completed</span><strong id="detailCows"></strong></div><div><span>Damaged Devices</span><strong id="detailDamaged"></strong></div><div><span>Interns Assigned</span><strong id="detailInterns"></strong></div></div><div class="progress-large"><div id="detailBar"></div></div><h3>Live Updates</h3><div id="liveUpdates" class="notes-list"></div><h3>Recent Notes</h3><div id="detailNotes" class="notes-list"></div><h3>Recent Activity</h3><ul class="activity"><li>+1 COW completed · 10 minutes ago</li><li>+2 damaged devices reported · 25 minutes ago</li><li>Note added: Library carts complete · 1 hour ago</li></ul></div></section></div></section><section id="update" class="view"><div class="phone-wrap"><div class="phone"><h2>Update Progress</h2><label>Area<select id="updateArea"></select></label><label>School<select id="updateSchool"></select></label><div class="mobile-stat"><span>COWs Completed</span><strong id="updateCows">0 / 0</strong></div><div class="button-row"><button id="minusCow">-1</button><button id="plusCow">+1 COW</button></div><div class="mobile-stat"><span>Damaged Devices</span><strong id="updateDamaged">0</strong></div><div class="button-row"><button id="minusDamage">-1</button><button id="plusDamage">+1 Damaged</button></div><label>Team Note<textarea id="noteBox" placeholder="Ex: Asset 567034 is damaged. Swapped with replacement device."></textarea></label><button class="save" id="saveUpdate">Save Update</button><p id="saveMessage" class="save-message"></p></div><div class="panel explanation"><h2>Where notes go</h2><p>Notes attach to the selected school and show on that school's detail page and in the end-of-day summary.</p></div></div></section><section id="summary" class="view"><div class="panel summary"><div class="panel-head"><div><h2>End-of-Day Summary</h2><p>View all progress or generate a summary for one school.</p></div><button id="copySummary">Copy Summary</button></div><div class="summary-controls"><select id="summaryAreaFilter"></select><select id="summarySchoolFilter"></select><input id="summarySearch" placeholder="Search schools..."/></div><div id="summaryContent" class="summary-card"></div><div class="notes-section"><h3>Notes by School</h3><p class="muted">Damage notes and team updates entered by interns appear here.</p><div id="summaryNotes" class="notes-list"></div></div></div></section></main><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>FWPS Refresh Dashboard V5 Mock</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">FW</div><div><h2>FWPS Refresh</h2><p>Ops Dashboard</p></div></div>
+    <nav>
+      <button class="active" data-view="dashboard">Dashboard</button>
+      <button data-view="schools">School Detail</button>
+      <button data-view="update">Intern Update</button>
+      <button data-view="summary">End-of-Day</button>
+    </nav>
+    <div class="user-card"><strong>Jayden</strong><span>Technician</span></div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div><p class="eyebrow">District Chromebook Refresh</p><h1 id="pageTitle">Dashboard</h1></div>
+      <select id="globalAreaFilter"></select>
+    </header>
+
+    <section id="dashboard" class="view active-view">
+      <div class="prototype-banner">
+        <strong>Prototype Preview</strong>
+        <span>Sample progress data only. COW counts and school codes are based on gathered district data.</span>
+      </div>
+
+      <div class="metrics">
+        <article><span>Schools</span><strong id="metricSchools">0</strong></article>
+        <article><span>Completed</span><strong id="metricCompleted">0</strong></article>
+        <article><span>Avg. Progress</span><strong id="metricProgress">0%</strong></article>
+        <article><span>COWs Done</span><strong id="metricCows">0</strong></article>
+        <article><span>Damaged</span><strong id="metricDamaged">0</strong></article>
+      </div>
+
+      <div class="grid">
+        <section class="panel">
+          <div class="panel-head">
+            <div><h2>School Progress Overview</h2><p>Search by school name or school code.</p></div>
+            <input id="dashboardSearch" placeholder="Search school or code..." />
+          </div>
+          <div id="schoolRows" class="rows"></div>
+        </section>
+        <section class="panel">
+          <h2>Staffing Insights</h2>
+          <div id="insights" class="insights"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="schools" class="view">
+      <div class="detail-layout">
+        <section class="panel list-panel">
+          <div class="panel-head stacked">
+            <div><h2>Schools</h2><p>Select an area, then optionally click a school.</p></div>
+            <select id="detailAreaFilter"></select>
+            <input id="detailSearch" placeholder="Search school or code..." />
+            <button id="clearSchoolBtn" class="ghost-button">Deselect school / View area snapshot</button>
+          </div>
+          <div id="detailSchoolList" class="school-list"></div>
+        </section>
+
+        <section class="school-detail panel">
+          <div id="areaOnlyView">
+            <h2 id="areaTitle"></h2>
+            <p id="areaMeta"></p>
+            <div class="detail-grid">
+              <div><span>Schools in Area</span><strong id="areaSchoolsCount"></strong></div>
+              <div><span>Avg. Progress</span><strong id="areaAvgProgress"></strong></div>
+              <div><span>COWs Completed</span><strong id="areaCows"></strong></div>
+              <div><span>Damaged Devices</span><strong id="areaDamaged"></strong></div>
+            </div>
+            <h3>Area Progress Snapshot</h3>
+            <p class="muted">Sorted from most complete to least complete.</p>
+            <div id="areaSnapshot" class="snapshot"></div>
+          </div>
+
+          <div id="schoolOnlyView" class="hidden">
+            <div class="school-detail-head">
+              <div><h2 id="detailName"></h2><p id="detailMeta"></p></div>
+              <button id="deselectFromDetail" class="ghost-button">Back to area snapshot</button>
+            </div>
+            <div class="detail-grid">
+              <div><span>Progress</span><strong id="detailProgress"></strong></div>
+              <div><span>COWs Completed</span><strong id="detailCows"></strong></div>
+              <div><span>Damaged Devices</span><strong id="detailDamaged"></strong></div>
+              <div><span>Interns Assigned</span><strong id="detailInterns"></strong></div>
+            </div>
+            <div class="progress-large"><div id="detailBar"></div></div>
+            <h3>Live Updates</h3><div id="liveUpdates" class="notes-list"></div>
+            <h3>Recent Notes</h3><div id="detailNotes" class="notes-list"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="update" class="view">
+      <div class="phone-wrap">
+        <div class="phone">
+          <h2>Update Progress</h2>
+          <label>Area<select id="updateArea"></select></label>
+          <label>School<select id="updateSchool"></select></label>
+          <div class="mobile-stat"><span>COWs Completed</span><strong id="updateCows">0 / 0</strong></div>
+          <div class="button-row"><button id="minusCow">-1</button><button id="plusCow">+1 COW</button></div>
+          <div class="mobile-stat"><span>Damaged Devices</span><strong id="updateDamaged">0</strong></div>
+          <div class="button-row"><button id="minusDamage">-1</button><button id="plusDamage">+1 Damaged</button></div>
+          <label>Team Note<textarea id="noteBox" placeholder="Ex: Asset 567034 is damaged. Swapped with replacement device."></textarea></label>
+          <button class="save" id="saveUpdate">Save Update</button>
+          <p id="saveMessage" class="save-message"></p>
+        </div>
+        <div class="panel explanation">
+          <h2>Where notes go</h2>
+          <p>Notes attach to the selected school and include the date and time they were added.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="summary" class="view">
+      <div class="panel summary">
+        <div class="panel-head">
+          <div><h2>End-of-Day Summary</h2><p>View all progress or generate a summary for one school.</p></div>
+          <button id="copySummary">Copy Summary</button>
+        </div>
+        <div class="summary-controls">
+          <select id="summaryAreaFilter"></select>
+          <select id="summarySchoolFilter"></select>
+          <input id="summarySearch" placeholder="Search school or code..." />
+        </div>
+        <div id="summaryContent" class="summary-card"></div>
+        <div class="notes-section">
+          <h3>Notes by School</h3>
+          <p class="muted">Damage notes and team updates entered by interns appear here.</p>
+          <div id="summaryNotes" class="notes-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
