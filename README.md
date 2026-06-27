@@ -1,15 +1,10 @@
-# FWPS Refresh Dashboard V7 Mock
+# FWPS Refresh Dashboard V8 Mock
 
-Open `index.html` in your browser.
-
-New features:
-- Confirm Update modal for COW and damaged-device count changes.
-- Room/location field for count updates and notes.
-- Structured update types: Completed COW, Damaged Device, Room Completed, Damage Report, General Note, Count Adjustment.
-- Summary note filtering by update type, area, school, search term, room, or school code.
-- Animated “Updates saved” popup with green checkmark.
-- Notes include school code, room/location, date, and time.
-- School code search and COW counts from gathered data.
-- Area 5 removed.
-- Area/school views sort from most complete to least complete.
-- Mobile zoom issue reduced with mobile viewport and touch-action settings.
+Updates:
+- Replaced sidebar logo with the uploaded FWPS-style image.
+- 100% progress now shows as Complete, not Almost Complete.
+- Complete badges are blue for easy distinction.
+- Added optional sound effects toggle.
+- Added subtle sounds for confirmation, save success, and school completion.
+- Added school-complete popup when a school reaches 100%.
+- Kept V7 features: confirmation modal, room tracking, note filters, animated save popup, school code search, updated COW counts, Area 5 removed, and mobile zoom fixes.
