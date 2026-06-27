@@ -8,3 +8,5 @@ Updates:
 - Added subtle sounds for confirmation, save success, and school completion.
 - Added school-complete popup when a school reaches 100%.
 - Kept V7 features: confirmation modal, room tracking, note filters, animated save popup, school code search, updated COW counts, Area 5 removed, and mobile zoom fixes.
+
+Fix: Moved completion-state setup after the pct() helper to prevent JavaScript initialization errors.

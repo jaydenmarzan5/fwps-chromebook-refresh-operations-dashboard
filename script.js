@@ -5,9 +5,10 @@ let updates = [
   {school:"Olympic View",code:"OLV",area:"Area 2",type:"Room Completed",room:"Library",text:"Two carts fully cleaned and powerwashed. One missing charger found.",user:"Team A",date:"Jun 25, 2026",time:"10:18 AM"},
   {school:"Star Lake",code:"STL",area:"Area 4",type:"Completed COW",room:"Media Center",text:"COW completed and ready.",user:"Team B",date:"Jun 25, 2026",time:"11:05 AM"}
 ];
-let selectedSchoolName=null,pendingAction=null,previousCompletionState=new Set(schools.filter(s=>pct(s)>=100).map(s=>s.name));
+let selectedSchoolName=null,pendingAction=null;
 const areas=["All Areas","Area 1","Area 2","Area 3","Area 4"],updateTypes=["All Updates","Completed COW","Damaged Device","Room Completed","Damage Report","General Note","Count Adjustment"];
 const pct=s=>s.total?Math.round((s.done/s.total)*100):0;
+let previousCompletionState=new Set(schools.filter(s=>pct(s)>=100).map(s=>s.name));
 function sortByProgress(arr){return [...arr].sort((a,b)=>pct(b)-pct(a)||a.name.localeCompare(b.name));}
 function status(s){const p=pct(s);if(p>=100)return["Complete","complete","var(--blue)"];if(p>=85)return["Almost Complete","good","var(--green)"];if(p>=45)return["In Progress","mid","var(--yellow)"];return["Needs Support","bad","var(--red)"];}
 function fillSelect(select,options){select.innerHTML=options.map(o=>`<option value="${o}">${o}</option>`).join("");}
