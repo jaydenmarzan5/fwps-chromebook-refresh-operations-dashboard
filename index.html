@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>FWPS Refresh Dashboard V5 Mock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>FWPS Refresh Dashboard V7 Mock</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -27,9 +27,8 @@
     <section id="dashboard" class="view active-view">
       <div class="prototype-banner">
         <strong>Prototype Preview</strong>
-        <span>Sample progress data only. COW counts and school codes are based on gathered district data.</span>
+        <span>Sample progress data only. COW counts and school codes use gathered district data.</span>
       </div>
-
       <div class="metrics">
         <article><span>Schools</span><strong id="metricSchools">0</strong></article>
         <article><span>Completed</span><strong id="metricCompleted">0</strong></article>
@@ -37,11 +36,10 @@
         <article><span>COWs Done</span><strong id="metricCows">0</strong></article>
         <article><span>Damaged</span><strong id="metricDamaged">0</strong></article>
       </div>
-
       <div class="grid">
         <section class="panel">
           <div class="panel-head">
-            <div><h2>School Progress Overview</h2><p>Search by school name or school code.</p></div>
+            <div><h2>School Progress Overview</h2><p>Search by full school name or school code.</p></div>
             <input id="dashboardSearch" placeholder="Search school or code..." />
           </div>
           <div id="schoolRows" class="rows"></div>
@@ -105,17 +103,35 @@
           <h2>Update Progress</h2>
           <label>Area<select id="updateArea"></select></label>
           <label>School<select id="updateSchool"></select></label>
+
           <div class="mobile-stat"><span>COWs Completed</span><strong id="updateCows">0 / 0</strong></div>
-          <div class="button-row"><button id="minusCow">-1</button><button id="plusCow">+1 COW</button></div>
+          <div class="button-row"><button data-action="cowMinus">-1 COW</button><button data-action="cowPlus">+1 COW</button></div>
+
           <div class="mobile-stat"><span>Damaged Devices</span><strong id="updateDamaged">0</strong></div>
-          <div class="button-row"><button id="minusDamage">-1</button><button id="plusDamage">+1 Damaged</button></div>
-          <label>Team Note<textarea id="noteBox" placeholder="Ex: Asset 567034 is damaged. Swapped with replacement device."></textarea></label>
-          <button class="save" id="saveUpdate">Save Update</button>
+          <div class="button-row"><button data-action="damageMinus">-1 Damaged</button><button data-action="damagePlus">+1 Damaged</button></div>
+
+          <div class="divider"></div>
+          <h3>General / Room Note</h3>
+          <label>Update Type
+            <select id="manualNoteType">
+              <option value="General Note">General Note</option>
+              <option value="Room Completed">Room Completed</option>
+              <option value="Damage Report">Damage Report</option>
+            </select>
+          </label>
+          <label>Room / Location
+            <input id="manualRoom" placeholder="Ex: Room 214, Library, Media Center" />
+          </label>
+          <label>Team Note
+            <textarea id="noteBox" placeholder="Ex: Room 214 is complete. Asset 567034 has a cracked screen."></textarea>
+          </label>
+          <button class="save" id="saveUpdate">Save Note</button>
           <p id="saveMessage" class="save-message"></p>
         </div>
         <div class="panel explanation">
-          <h2>Where notes go</h2>
-          <p>Notes attach to the selected school and include the date and time they were added.</p>
+          <h2>Update safety</h2>
+          <p>Count changes require a confirmation step to reduce accidental taps. Each update can include a room/location and optional note.</p>
+          <p>Saved updates appear in School Detail and End-of-Day Summary with update type, room, date, and time.</p>
         </div>
       </div>
     </section>
@@ -129,17 +145,45 @@
         <div class="summary-controls">
           <select id="summaryAreaFilter"></select>
           <select id="summarySchoolFilter"></select>
-          <input id="summarySearch" placeholder="Search school or code..." />
+          <select id="summaryTypeFilter"></select>
+          <input id="summarySearch" placeholder="Search school, code, room, or note..." />
         </div>
         <div id="summaryContent" class="summary-card"></div>
         <div class="notes-section">
-          <h3>Notes by School</h3>
-          <p class="muted">Damage notes and team updates entered by interns appear here.</p>
+          <h3>Filtered Updates</h3>
+          <p class="muted">Completed COWs, damaged devices, room completions, and general notes appear here.</p>
           <div id="summaryNotes" class="notes-list"></div>
         </div>
       </div>
     </section>
   </main>
+
+  <div id="confirmOverlay" class="modal-overlay hidden">
+    <div class="modal">
+      <h2>Confirm update</h2>
+      <p id="confirmText" class="modal-subtext"></p>
+      <label>Room / Location
+        <input id="confirmRoom" placeholder="Ex: Room 214, Library, Media Center" />
+      </label>
+      <label>Optional Note
+        <textarea id="confirmNote" placeholder="Add any extra context for supervisors."></textarea>
+      </label>
+      <div class="modal-actions">
+        <button id="cancelConfirm" class="ghost-button">Cancel</button>
+        <button id="confirmUpdate" class="save">Confirm Update</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="successToast" class="success-toast" aria-live="polite">
+    <div class="checkmark-wrap">
+      <svg class="checkmark" viewBox="0 0 52 52">
+        <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none"/>
+        <path class="checkmark-check" fill="none" d="M14 27l8 8 17-18"/>
+      </svg>
+    </div>
+    <div><strong>Updates saved</strong><span>Your changes were added to the dashboard.</span></div>
+  </div>
 
   <script src="script.js"></script>
 </body>
